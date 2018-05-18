@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter()
+}
+
+configurations {
+  foo { 
+    transitive = false 
+  }
+}
+
+dependencies {
+    foo 'org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE'
+
+    foo 'com.google.code.gson:gson'
+    foo 'dom4j:dom4j'
+}
+
+
+task showFooFiles {
+  doLast {
+    configurations.foo.each {
+      println "==> $it.name"
+    }
+  }
+}
